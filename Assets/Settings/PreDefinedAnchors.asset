@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8c5d1985947e98b281c7a84f1ddc2ec, type: 3}
+  m_Name: PreDefinedAnchors
+  m_EditorClassIdentifier: 
+  anchors:
+    Collection:
+    - SerializedTime: 0
+      Latitude: 47.899173
+      Longitude: 35.142601
+      Altitude: 0
+      Heading: 0
+      AnchorType: 0
+      EunRotation: {x: 0, y: 0, z: 0, w: 0}
