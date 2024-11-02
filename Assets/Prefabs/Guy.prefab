@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 8436309209190797717}
   - component: {fileID: 3930235683630800093}
   - component: {fileID: 417836839831203185}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,6 @@ GameObject:
   - component: {fileID: 4374056938239879454}
   - component: {fileID: 6904211351196408984}
   - component: {fileID: 8139619057614450033}
-  - component: {fileID: 1363682874902099008}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -227,27 +226,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1363682874902099008
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3662641770308232699}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6744508564884045929
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +237,6 @@ GameObject:
   - component: {fileID: 4527412236757588575}
   - component: {fileID: 4344160380458433585}
   - component: {fileID: 2164510413407592700}
-  - component: {fileID: 5729791049992916527}
   m_Layer: 0
   m_Name: Sphere (1)
   m_TagString: Untagged
@@ -332,27 +309,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &5729791049992916527
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6744508564884045929}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7235464979261950302
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +320,6 @@ GameObject:
   - component: {fileID: 2733690896246320605}
   - component: {fileID: 4932031252414399330}
   - component: {fileID: 2321550342771640738}
-  - component: {fileID: 4752400466647495236}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -437,27 +392,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4752400466647495236
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7235464979261950302}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9026540268176717080
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,7 +403,6 @@ GameObject:
   - component: {fileID: 8535386106596068262}
   - component: {fileID: 5827285126449862020}
   - component: {fileID: 6210026744015612083}
-  - component: {fileID: 5739116626950821487}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -542,24 +475,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5739116626950821487
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9026540268176717080}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}

@@ -1,0 +1,73 @@
+{
+    "name": "InputActionMap",
+    "maps": [
+        {
+            "name": "Default",
+            "id": "8e876491-c4eb-4506-a782-14ba29a1b956",
+            "actions": [
+                {
+                    "name": "Click",
+                    "type": "Value",
+                    "id": "e428c671-bd7b-485a-bd50-e43025db072a",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "352189f5-81b3-4cc4-a9dd-5ea1b708bf71",
+                    "path": "<Touchscreen>/primaryTouch/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "MouseLeft",
+                    "id": "63bf5515-87ec-46c2-9934-c8f8b2ee2b5d",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "48c822fc-fdc4-4271-8110-727a8a9b0cdd",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "be745d91-2e1a-47f3-b340-0dde1d01441f",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Default",
+            "bindingGroup": "Default",
+            "devices": []
+        }
+    ]
+}

@@ -7,7 +7,6 @@ using Zenject;
 public class VpsInitializer : MonoBehaviour
 {
     [Inject] private AREarthManager _earthManager;
-    [Inject] private ARCoreExtensions _arCoreExtensions;
 
     private bool _isReturning = false;
 

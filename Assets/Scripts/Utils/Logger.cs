@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public static class Logger
@@ -30,5 +31,11 @@ public static class Logger
     public static void DrawRay(Vector3 start, Vector3 dir, Color color, float duration)
     {
         Debug.DrawRay(start, dir, color, duration);
+    }
+
+    [System.Diagnostics.Conditional("ENABLE_LOG")]
+    public static void LogException(Exception e)
+    {
+        Debug.LogException(e);
     }
 }
