@@ -10,8 +10,7 @@ using Zenject;
 public class VpsInitializer : MonoBehaviour
 {
     [Inject] private AREarthManager _earthManager;
-
-    [SerializeField] private TextMeshProUGUI infoText;
+    [Inject] private InfoPanel _infoPanel;
 
     private bool _isReturning = false;
 
@@ -45,7 +44,7 @@ public class VpsInitializer : MonoBehaviour
         if (!Input.location.isEnabledByUser)
         {
             string msg = "Location service is disabled by the user.";
-            infoText.text = $"INFO: {msg}";
+            _infoPanel.SetLocationInfoText($"INFO: {msg}");
             Logger.Log(msg);
             yield break;
         }
@@ -53,7 +52,7 @@ public class VpsInitializer : MonoBehaviour
         if (Input.location.status != LocationServiceStatus.Running)
         {
             string msg = "Starting location service.";
-            infoText.text = $"INFO: {msg}"; ;
+            _infoPanel.SetLocationInfoText($"INFO: {msg}");
             Logger.Log(msg);
 
             Input.location.Start();
@@ -68,14 +67,14 @@ public class VpsInitializer : MonoBehaviour
         if (Input.location.status == LocationServiceStatus.Failed)
         {
             string msg = $"Location service ended with {Input.location.status} status.";
-            infoText.text = $"WARN: {msg}";
+            _infoPanel.SetLocationInfoText($"WARN: {msg}");
             Logger.LogWarning(msg);
             Input.location.Stop();
         }
         else
         {
             string msg = "Location service is ready.";
-            infoText.text = $"INFO: {msg}";
+            _infoPanel.SetLocationInfoText($"INFO: {msg}");
             Logger.Log(msg);
             _isReady = true;
         }
@@ -132,7 +131,7 @@ public class VpsInitializer : MonoBehaviour
         else if (earthState != EarthState.Enabled)
         {
             string msg = $"Geospatial sample encountered an EarthState error: {earthState}";
-            infoText.text = $"WARN: {msg}";
+            _infoPanel.SetLocationInfoText($"WARN: {msg}");
             Logger.LogWarning(msg);
             return;
         }
@@ -182,7 +181,7 @@ public class VpsInitializer : MonoBehaviour
             return;
         }
 
-        infoText.text = $"ERR: {reason}";
+        _infoPanel.SetLocationInfoText($"ERR: {reason}");
 
         Logger.LogError(reason);
         _isReturning = true;

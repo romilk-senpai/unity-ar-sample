@@ -1,6 +1,5 @@
 using Cysharp.Threading.Tasks;
 using Google.XR.ARCoreExtensions;
-using TMPro;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
@@ -11,12 +10,10 @@ public class GeospatialObjectManager : MonoBehaviour
     [SerializeField] private double HeadingThreshold = 25;
     [SerializeField] private double HorizontalThreshold = 20;
 
-    [Space(10)]
-    [SerializeField] private TextMeshProUGUI outputText;
-
     [Inject] private ARAnchorManager _anchorManager;
     [Inject] private AREarthManager _earthManager;
     [Inject] private VpsInitializer _initializer;
+    [Inject] private InfoPanel _infoPanel;
 
     private bool _initialized = false;
 
@@ -73,7 +70,7 @@ public class GeospatialObjectManager : MonoBehaviour
 
     private void ShowTrackingInfo(string status, GeospatialPose pose)
     {
-        outputText.text = string.Format(
+        _infoPanel.SetLocationInfoText(
            $"Latitude: {pose.Latitude:F6}°\n" +
            $"Longitude: {pose.Longitude:F6}°\n" +
            $"Horizontal Accuracy: {pose.HorizontalAccuracy:F6}m\n" +
@@ -82,6 +79,6 @@ public class GeospatialObjectManager : MonoBehaviour
            $"Heading: {pose.EunRotation:F2}\n" +
            $"Heading Accuracy: {pose.EunRotation:F2}\n" +
            $"Status: {status}"
-       );
+        );
     }
 }
