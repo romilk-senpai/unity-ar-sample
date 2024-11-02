@@ -9,7 +9,7 @@
                     "name": "Click",
                     "type": "Value",
                     "id": "e428c671-bd7b-485a-bd50-e43025db072a",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Touch",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -39,7 +39,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "modifier",
+                    "name": "Modifier",
                     "id": "48c822fc-fdc4-4271-8110-727a8a9b0cdd",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -50,7 +50,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "binding",
+                    "name": "Binding",
                     "id": "be745d91-2e1a-47f3-b340-0dde1d01441f",
                     "path": "<Mouse>/position",
                     "interactions": "",

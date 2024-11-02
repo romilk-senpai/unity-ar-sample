@@ -10,9 +10,11 @@ public class MainSceneInstaller : MonoInstaller
     [SerializeField] private AREarthManager earthManager;
     [SerializeField] private VpsInitializer initializer;
     [SerializeField] private GeospatialObjectManager geospatialObjectManager;
+    [SerializeField] private BallSample ballSample;
 
     public override void InstallBindings()
     {
+        // some AR bindings, maybe creating and iterface to them is a good idea
         Container.Bind<ARAnchorManager>()
             .FromInstance(anchorManager)
             .AsSingle();
@@ -31,6 +33,12 @@ public class MainSceneInstaller : MonoInstaller
 
         Container.Bind<GeospatialObjectManager>()
             .FromInstance(geospatialObjectManager)
+            .AsSingle();
+
+        // did this because initially wanted to handle this input with input system :c
+        Container.Bind<IInputHandler>()
+            .To<BallSample>()
+            .FromInstance(ballSample)
             .AsSingle();
     }
 }

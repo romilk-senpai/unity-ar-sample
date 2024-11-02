@@ -3,6 +3,7 @@ using Google.XR.ARCoreExtensions;
 using UnityEngine;
 using Zenject;
 
+// we take pre scriptable object with array of predefined anchors and spawn them
 public class PreDefinedObjectSpawner : MonoBehaviour
 {
     [SerializeField] private AnchorListSO anchorListSO;
@@ -10,6 +11,8 @@ public class PreDefinedObjectSpawner : MonoBehaviour
 
     [Inject] private GeospatialObjectManager _geospatialManager;
 
+    // coroutine start/awake/etc methods have fine syntax 
+    // therefore sometimes I use it instead of async
     private IEnumerator Start()
     {
         while (!_geospatialManager.Initialized)

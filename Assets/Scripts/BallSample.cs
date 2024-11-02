@@ -1,18 +1,12 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class BallSample : MonoBehaviour
+public class BallSample : MonoBehaviour, IInputHandler
 {
-    // simple reference to click action
-    [SerializeField] private InputActionProperty clickAction;
-
     [Space(10)]
     [SerializeField] private Ball ballPrefab;
+    // after this time ball with disable and go to pool
     [SerializeField] private float ballLifetime = 5f;
     [SerializeField] private float throwForce = 500f;
     // layermask which will filter objects we want to apply vibration on collision
@@ -25,36 +19,9 @@ public class BallSample : MonoBehaviour
 
     private void Start()
     {
+        // maybe it is better to inject it with zenject, i'm not too sure
         _mainCamera = Camera.main;
         _ballPool = new Queue<Ball>();
-        clickAction.action.performed += OnClickPerformed;
-        clickAction.action.Enable();
-    }
-
-    private void OnClickPerformed(InputAction.CallbackContext context)
-    {
-        var touchPosition = context.ReadValue<Vector2>();
-
-        _mainCamera.ScreenToWorldPoint(touchPosition);
-
-        if (!_ballPool.TryDequeue(out Ball ball))
-        {
-            ball = Instantiate(ballPrefab);
-            ball.OnBallCollision += OnBallCollision;
-        }
-
-        ball.gameObject.SetActive(true);
-        ball.transform.SetPositionAndRotation(_mainCamera.transform.position, Quaternion.identity);
-        ball.ApplyForce(_mainCamera.transform.forward * throwForce);
-
-        StartCoroutine(DisableBallIn(ball, ballLifetime));
-    }
-
-    private IEnumerator DisableBallIn(Ball ball, float timer)
-    {
-        yield return new WaitForSeconds(timer);
-        ball.gameObject.SetActive(false);
-        _ballPool.Enqueue(ball);
     }
 
     private void OnBallCollision(Collision collision)
@@ -62,7 +29,42 @@ public class BallSample : MonoBehaviour
         // check if object is in our trigger layer
         if ((vibrationTriggerLayerMask & (1 << collision.gameObject.layer)) != 0)
         {
+            // this seems pretty basic but fine for our task
             Handheld.Vibrate();
         }
+    }
+
+    // handling wait with UniTask
+    public async void ProcessClick(Vector2 clickPosition)
+    {
+        // so we spawn ball where user pressed on the screen
+        Vector3 spawnPos = _mainCamera.ScreenToWorldPoint(clickPosition);
+
+        Ball ball;
+
+        if (!_ballPool.TryDequeue(out ball))
+        {
+            ball = Instantiate(ballPrefab);
+            ball.OnBallCollision += OnBallCollision;
+        }
+
+        // re-enabling pulled objects
+        ball.gameObject.SetActive(true);
+        ball.transform.SetPositionAndRotation(spawnPos, Quaternion.identity);
+        // applying force towards camera forward direction
+        ball.ApplyForce(_mainCamera.transform.forward * throwForce);
+
+        // it throws exception on cancel and i'm pretty sure it doesn't matter
+        // but it's chained by input system therefore it's better to handle the exception
+        bool isCanceled = await UniTask.WaitForSeconds(ballLifetime, cancellationToken: destroyCancellationToken)
+            .SuppressCancellationThrow();
+
+        if (isCanceled)
+        {
+            return;
+        }
+
+        ball.gameObject.SetActive(false);
+        _ballPool.Enqueue(ball);
     }
 }

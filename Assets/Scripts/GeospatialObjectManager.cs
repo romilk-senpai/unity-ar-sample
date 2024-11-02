@@ -30,8 +30,7 @@ public class GeospatialObjectManager : MonoBehaviour
             return;
         }
 
-        string status = "";
-
+        string status;
         GeospatialPose pose = _earthManager.CameraGeospatialPose;
 
         if (pose.OrientationYawAccuracy > HeadingThreshold ||
@@ -47,10 +46,11 @@ public class GeospatialObjectManager : MonoBehaviour
                 _initialized = true;
             }
         }
+
         ShowTrackingInfo(status, pose);
     }
 
-    public void SpawnObject(GeospatialPose pose, GameObject prefab)
+    public async void SpawnObject(GeospatialPose pose, GameObject prefab)
     {
         if (!_initialized)
         {
@@ -60,14 +60,9 @@ public class GeospatialObjectManager : MonoBehaviour
         ResolveAnchorOnTerrainPromise terrainPromise =
                 _anchorManager.ResolveAnchorOnTerrainAsync(pose.Latitude, pose.Longitude, pose.Altitude, pose.EunRotation);
 
-        WaitForTerrainPromise(terrainPromise, prefab);
-    }
+        await terrainPromise;
 
-    private async void WaitForTerrainPromise(ResolveAnchorOnTerrainPromise promise, GameObject prefab)
-    {
-        await promise;
-
-        var result = promise.Result;
+        var result = terrainPromise.Result;
 
         if (result.TerrainAnchorState == TerrainAnchorState.Success && result.Anchor != null)
         {

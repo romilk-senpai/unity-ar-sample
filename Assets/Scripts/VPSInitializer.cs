@@ -1,12 +1,17 @@
 using System.Collections;
 using Google.XR.ARCoreExtensions;
+using TMPro;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using Zenject;
 
+// taken and reworked from https://github.com/TakashiYoshinaga/GeospatialAPI-Unity-StarterKit/tree/main/SampleProject/Assets/AR_Fukuoka/Scripts
+// i just removed all the unnecessary stuff and formated to look like my code :]
 public class VpsInitializer : MonoBehaviour
 {
     [Inject] private AREarthManager _earthManager;
+
+    [SerializeField] private TextMeshProUGUI infoText;
 
     private bool _isReturning = false;
 
@@ -15,8 +20,9 @@ public class VpsInitializer : MonoBehaviour
 
     public bool IsReady => _isReady;
 
-    public void Awake()
+    private void Awake()
     {
+        // restrict rotation, at least it is recommended by Lightship
         Screen.autorotateToLandscapeLeft = false;
         Screen.autorotateToLandscapeRight = false;
         Screen.autorotateToPortraitUpsideDown = false;
@@ -25,7 +31,7 @@ public class VpsInitializer : MonoBehaviour
         Application.targetFrameRate = 60;
     }
 
-    public void OnEnable()
+    private void OnEnable()
     {
         _isReturning = false;
         _isReady = false;
@@ -33,17 +39,23 @@ public class VpsInitializer : MonoBehaviour
         StartCoroutine(_startLocationService);
     }
 
+    // location initialization
     private IEnumerator StartLocationService()
     {
         if (!Input.location.isEnabledByUser)
         {
-            Logger.Log("Location service is disabled by the user.");
+            string msg = "Location service is disabled by the user.";
+            infoText.text = $"INFO: {msg}";
+            Logger.Log(msg);
             yield break;
         }
 
         if (Input.location.status != LocationServiceStatus.Running)
         {
-            Logger.Log("Starting location service.");
+            string msg = "Starting location service.";
+            infoText.text = $"INFO: {msg}"; ;
+            Logger.Log(msg);
+
             Input.location.Start();
 
             while (Input.location.status == LocationServiceStatus.Initializing)
@@ -55,13 +67,16 @@ public class VpsInitializer : MonoBehaviour
 
         if (Input.location.status == LocationServiceStatus.Failed)
         {
-            Logger.LogWarningFormat(
-                "Location service ended with {0} status.", Input.location.status);
+            string msg = $"Location service ended with {Input.location.status} status.";
+            infoText.text = $"WARN: {msg}";
+            Logger.LogWarning(msg);
             Input.location.Stop();
         }
         else
         {
-            Logger.Log("Location service is ready.");
+            string msg = "Location service is ready.";
+            infoText.text = $"INFO: {msg}";
+            Logger.Log(msg);
             _isReady = true;
         }
     }
@@ -74,7 +89,7 @@ public class VpsInitializer : MonoBehaviour
         Input.location.Stop();
     }
 
-    public void Update()
+    private void Update()
     {
         LifecycleUpdate();
 
@@ -116,13 +131,14 @@ public class VpsInitializer : MonoBehaviour
         }
         else if (earthState != EarthState.Enabled)
         {
-            string errorMessage =
-                "Geospatial sample encountered an EarthState error: " + earthState;
-            Logger.LogWarning(errorMessage);
+            string msg = $"Geospatial sample encountered an EarthState error: {earthState}";
+            infoText.text = $"WARN: {msg}";
+            Logger.LogWarning(msg);
             return;
         }
     }
 
+    // lifecycle update to check whether everyhing is fine with tracking
     private void LifecycleUpdate()
     {
         if (_isReturning)
@@ -165,6 +181,8 @@ public class VpsInitializer : MonoBehaviour
         {
             return;
         }
+
+        infoText.text = $"ERR: {reason}";
 
         Logger.LogError(reason);
         _isReturning = true;

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// this is too basic to make up something of it
 public class OnboardingMenu : MonoBehaviour
 {
     [SerializeField] private Button startButton;
