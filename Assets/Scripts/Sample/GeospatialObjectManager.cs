@@ -54,6 +54,7 @@ public class GeospatialObjectManager : MonoBehaviour
             return;
         }
 
+        // Autmatic ground placement without needing in altitude
         ResolveAnchorOnTerrainPromise terrainPromise =
                 _anchorManager.ResolveAnchorOnTerrainAsync(pose.Latitude, pose.Longitude, pose.Altitude, pose.EunRotation);
 
