@@ -4,6 +4,8 @@ Before build
 May need to install AR Core Extensions targall from https://github.com/google-ar/arcore-unity-extensions/releases `*arf5` specifically!!!
 Git is required to be installed and set in Path to resolve git dependencies
 
+Pre-defined anchors can be set in `Assts/Settings/PreDefinedAnchors` scriptable object, add any amount of entries you want. Only Latitude and Logintude are required, rest are optional
+
 Build for Android
 * `Assets/External Dependency Manager/Android Resolver/Resolve`
 * Put your Google Cloud project API key in `Edit/Project Settings/XR Plug-in Management/ARCore Extensions`, `Android API Key` if you want to use API authentication
