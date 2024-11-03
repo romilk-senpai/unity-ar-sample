@@ -1,15 +1,16 @@
 # unity-ar-sample
 
 A small AR Core + Extensions + Niantic Lightship example
-* Define some coorinates
+* Define some coorinates for objects
 * Throw balls at them
 
 
 ## Before build
 May need to install AR Core Extensions targall from https://github.com/google-ar/arcore-unity-extensions/releases `*arf5` specifically!!!
+It is also provided in `Packages` folder
 Git is required to be installed and set in Path to resolve git dependencies
 
-Pre-defined anchors can be set in `Assts/Settings/PreDefinedAnchors` scriptable object, add any amount of entries you want. Only Latitude and Logintude are required, rest are optional
+Pre-defined anchors can be set in `Assets/Settings/PreDefinedAnchors` scriptable object, add any amount of entries you want. Only Latitude and Logintude are required, rest are optional
 
 ## Build for Android
 * `Assets/External Dependency Manager/Android Resolver/Resolve`
