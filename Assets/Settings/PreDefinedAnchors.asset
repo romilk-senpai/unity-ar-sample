@@ -15,15 +15,8 @@ MonoBehaviour:
   anchors:
     Collection:
     - SerializedTime: 0
-      Latitude: 47.899173
-      Longitude: 35.142601
-      Altitude: 0
-      Heading: 0
-      AnchorType: 0
-      EunRotation: {x: 0, y: 0, z: 0, w: 0}
-    - SerializedTime: 0
-      Latitude: 47.89921680396762
-      Longitude: 35.142464507849645
+      Latitude: 33.995485
+      Longitude: -118.477107
       Altitude: 0
       Heading: 0
       AnchorType: 0
