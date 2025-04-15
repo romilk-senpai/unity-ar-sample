@@ -19,15 +19,6 @@ Pre-defined anchors can be set in `Assets/Settings/PreDefinedAnchors` scriptable
 * Put you Lightship API key in `Lightship/Settings/API Key`
 * Click `Build and Run`
 
-## Build for iOS
-
-Unfortunately I can't test all this stuff but you still
-* Put your Google or IOS:] Cloud project API key in `Edit/Project Settings/XR Plug-in Management/ARCore Extensions`, `iOS API Key` if you want to use API authentication
-* I'm not sure if SHA-1 is available on iOS
-* Put you Lightship API key in `Lightship/Settings/API Key`
-* Click `Build and Run`
-* And then something in XCode
-
 ### Plugins used
 * [Zenject](https://github.com/modesttree/Zenject) Flexible DI
 * [UniTask](https://github.com/Cysharp/UniTask) Cool async tool for Unity
